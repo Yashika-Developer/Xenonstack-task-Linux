@@ -14,9 +14,9 @@ To view the manual page, execute the following command:
 ```bash
 man internsctl
 ```
-<img src="./docs/a.jpg" height="260" width="420" style="border: 1px solid black;">
+<img src="./docs/a.jpg" height="300" width="600" style="border: 1px solid black;">
 <br>
-<img src="./docs/b.jpg" height="160" width="380" style="border: 1px solid black;">
+<img src="./docs/b.jpg" height="300" width="600" style="border: 1px solid black;">
 
 This will display the full documentation and usage guidelines for the command.
 
@@ -27,7 +27,7 @@ To get usage examples and help information, use the following command:
 ```bash
 internsctl --help
 ```
-<img src="./docs/c.jpg" height="160" width="380" style="border: 1px solid black;">
+<img src="./docs/c.jpg" height="300" width="600" style="border: 1px solid black;">
 
 This will provide you with necessary usage guidelines and examples.
 
@@ -38,7 +38,7 @@ To see the version of the command, execute:
 ```bash
 internsctl --version
 ```
-<img src="./docs/d.jpg" height="160" width="380" style="border: 1px solid black;">
+<img src="./docs/d.jpg" height="300" width="600" style="border: 1px solid black;">
 
 ## Section B
 
@@ -51,7 +51,7 @@ To obtain CPU information, use the following command:
 ```bash
 internsctl cpu getinfo
 ```
-<img src="./docs/e.jpg" height="160" width="380" style="border: 1px solid black;">
+<img src="./docs/e.jpg" height="300" width="600" style="border: 1px solid black;">
 
 The output will be similar to the information obtained from the `lscpu` command.
 
@@ -62,7 +62,7 @@ To retrieve memory information, run the following command:
 ```bash
 internsctl memory getinfo
 ```
-<img src="./docs/f.jpg" height="160" width="380" style="border: 1px solid black;">
+<img src="./docs/f.jpg" height="300" width="600" style="border: 1px solid black;">
 
 ---
 
@@ -91,8 +91,8 @@ To list all users with sudo permissions on the server, use the following command
 ```bash
 $ internsctl user list --sudo-only
 ```
-<img src="./docs/g.jpg" height="160" width="380" style="border: 1px solid black;">
-<img src="./docs/h.jpg" height="160" width="380" style="border: 1px solid black;">
+<img src="./docs/g.jpg" height="300" width="600" style="border: 1px solid black;">
+<img src="./docs/h.jpg" height="300" width="600" style="border: 1px solid black;">
 
 
 ## Part 3 - Advanced Level
@@ -122,7 +122,7 @@ Modify: 2020-10-07 20:34:44.616123431 +0530
 - **--permissions, -p:** Print file permissions
 - **--owner, -o:** Print file owner
 - **--last-modified, -m:** Print last modified time
-<img src="./docs/i.jpg" height="160" width="380" style="border: 1px solid black;">
+<img src="./docs/i.jpg" height="350" width="650" style="border: 1px solid black;">
 
 #### Example with Options:
 
