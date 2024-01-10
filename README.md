@@ -14,6 +14,9 @@ To view the manual page, execute the following command:
 ```bash
 man internsctl
 ```
+<img src="./docs/a.jpg" height="160" width="380" style="border: 1px solid black;">
+<br>
+<img src="./docs/b.jpg" height="160" width="380" style="border: 1px solid black;">
 
 This will display the full documentation and usage guidelines for the command.
 
@@ -24,6 +27,7 @@ To get usage examples and help information, use the following command:
 ```bash
 internsctl --help
 ```
+<img src="./docs/c.jpg" height="160" width="380" style="border: 1px solid black;">
 
 This will provide you with necessary usage guidelines and examples.
 
@@ -34,6 +38,7 @@ To see the version of the command, execute:
 ```bash
 internsctl --version
 ```
+<img src="./docs/d.jpg" height="160" width="380" style="border: 1px solid black;">
 
 ## Section B
 
@@ -46,6 +51,7 @@ To obtain CPU information, use the following command:
 ```bash
 internsctl cpu getinfo
 ```
+<img src="./docs/e.jpg" height="160" width="380" style="border: 1px solid black;">
 
 The output will be similar to the information obtained from the `lscpu` command.
 
@@ -56,187 +62,78 @@ To retrieve memory information, run the following command:
 ```bash
 internsctl memory getinfo
 ```
+<img src="./docs/f.jpg" height="160" width="380" style="border: 1px solid black;">
 
-The output will be similar to the information obtained from the `free` command.
+---
 
-### Part2 | Level Intermediate
+## Part 2 - Intermediate Level
 
-#### a. Create User
+### Create a New User
 
-To create a new user with login access, use:
-
-```bash
-internsctl user create <username>
-```
-
-This command will create a user with access to the Linux system and their home directory.
-
-#### b. List Regular Users
-
-To list all regular users, execute:
+To create a new user who can log in to the Linux system and access their home directory, use the following command:
 
 ```bash
-internsctl user list
+$ internsctl user create
 ```
 
-#### c. List Users with Sudo Permissions
+### List Regular Users
 
-To list users with sudo permissions, use:
+To list all regular users present on the server, use the following command:
 
 ```bash
-internsctl user list --sudo-only
+$ internsctl user list
 ```
 
-### Part3 | Advanced Level
+### List Users with Sudo Permissions
 
-#### Get File Information
-
-To get information about a file, execute:
+To list all users with sudo permissions on the server, use the following command:
 
 ```bash
-internsctl file getinfo <file-name>
+$ internsctl user list --sudo-only
 ```
+<img src="./docs/g.jpg" height="160" width="380" style="border: 1px solid black;">
+<img src="./docs/h.jpg" height="160" width="380" style="border: 1px solid black;">
 
-The output will be displayed in the specified format.
 
-#### Using Options for Specific Information
+## Part 3 - Advanced Level
 
-- To obtain the size of the specified file only:
+### Get File Information
+
+To get information about a file, use the following command:
 
 ```bash
-internsctl file getinfo --size <file-name>
+$ internsctl file getinfo <filename>
 ```
 
-- To obtain the permissions of the specified file only:
+#### Expected Output Format:
 
 ```bash
-internsctl file getinfo --permissions <file-name>
+xenonstack@xsd-034:~$ internsctl file getinfo hello.txt
+File: hellot.txt
+Access: -rw-r--r—
+Size(B): 5448
+Owner: xenonstack
+Modify: 2020-10-07 20:34:44.616123431 +0530
 ```
 
-- To obtain the owner of the specified file only:
+#### Options:
+
+- **--size, -s:** Print file size
+- **--permissions, -p:** Print file permissions
+- **--owner, -o:** Print file owner
+- **--last-modified, -m:** Print last modified time
+<img src="./docs/i.jpg" height="160" width="380" style="border: 1px solid black;">
+
+#### Example with Options:
 
 ```bash
-internsctl file getinfo --owner <file-name>
+$ internsctl file getinfo hello.txt --size --permissions
 ```
 
-- To obtain the last modified time of the specified file only:
+---
+<p align="center">
+  Made with ❤️ by <a href="https://github.com/Yashika-Developer">Yashika</a>
+</p>
 
-```bash
-internsctl file getinfo --last-modified <file-name>
-```
 
-```bash
-#!/bin/bash
 
-# internsctl - Custom Linux Command for Intern Operations
-
-# Function to display the manual page
-display_manual() {
-    echo "internsctl(1) - Custom Linux Command for Intern Operations"
-    echo
-    echo "NAME"
-    echo "    internsctl - Manage intern operations"
-    echo
-    echo "SYNOPSIS"
-    echo "    internsctl [OPTIONS] [ARGUMENTS]"
-    echo
-    echo "DESCRIPTION"
-    echo "    internsctl is a custom Linux command for managing intern operations."
-    echo
-    echo "OPTIONS"
-    echo "    --help        Display this help message"
-    echo "    --version     Display the version of internsctl"
-    echo
-    echo "EXAMPLES"
-    echo "    internsctl --help"
-    echo "    internsctl --version"
-    echo "    internsctl cpu getinfo"
-    echo "    internsctl user create <username>"
-    echo "    internsctl user list --sudo-only"
-    echo "    internsctl file getinfo [options] <file-name>"
-    echo
-    echo "AUTHOR"
-    echo "    Your Name <your.email@example.com>"
-}
-
-# Function to display the help message
-display_help() {
-    echo "Usage: internsctl [OPTIONS] [ARGUMENTS]"
-    echo "Manage intern operations."
-    echo
-    echo "OPTIONS:"
-    echo "    --help        Display this help message"
-    echo "    --version     Display the version of internsctl"
-    echo
-    echo "EXAMPLES:"
-    echo "    internsctl --help"
-    echo "    internsctl --version"
-    echo "    internsctl cpu getinfo"
-    echo "    internsctl user create <username>"
-    echo "    internsctl user list --sudo-only"
-    echo "    internsctl file getinfo [options] <file-name>"
-    echo
-    echo "AUTHOR"
-    echo "    Your Name <your.email@example.com>"
-}
-
-# Function to display the version
-display_version() {
-    echo "internsctl v0.1.0"
-}
-
-# Function to get file information
-get_file_info() {
-    if [ -z "$1" ]; then
-        echo "Error: Missing file name"
-        display_help
-        exit 1
-    fi
-
-    echo "Getting information for file: $1"
-    # Add your logic here to get file information
-}
-
-# Main script
-
-# Check for the number of arguments
-if [ "$#" -eq 0 ]; then
-    display_help
-    exit 1
-fi
-
-# Parse command line arguments
-while [[ $# -gt 0 ]]; do
-    case "$1" in
-        --help)
-            display_help
-            exit 0
-            ;;
-        --version)
-            display_version
-            exit 0
-            ;;
-        file)
-            shift
-            case "$1" in
-                getinfo)
-                    shift
-                    get_file_info "$1"
-                    exit 0
-                    ;;
-                *)
-                    echo "Error: Unknown subcommand '$1' for 'file'"
-                    display_help
-                    exit 1
-                    ;;
-            esac
-            ;;
-        *)
-            echo "Error: Unknown option '$1'"
-            display_help
-            exit 1
-            ;;
-    esac
-    shift
-done
-```
