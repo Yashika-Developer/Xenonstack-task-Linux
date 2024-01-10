@@ -14,7 +14,7 @@ To view the manual page, execute the following command:
 ```bash
 man internsctl
 ```
-<img src="./docs/a.jpg" height="300" width="600" style="border: 1px solid black;">
+<img src="./docs/a.jpg" height="200" width="800" style="border: 1px solid black;">
 <br>
 <img src="./docs/b.jpg" height="300" width="600" style="border: 1px solid black;">
 
@@ -38,7 +38,7 @@ To see the version of the command, execute:
 ```bash
 internsctl --version
 ```
-<img src="./docs/d.jpg" height="300" width="600" style="border: 1px solid black;">
+<img src="./docs/d.jpg" height="250" width="800" style="border: 1px solid black;">
 
 ## Section B
 
@@ -62,7 +62,7 @@ To retrieve memory information, run the following command:
 ```bash
 internsctl memory getinfo
 ```
-<img src="./docs/f.jpg" height="300" width="600" style="border: 1px solid black;">
+<img src="./docs/f.jpg" height="250" width="800" style="border: 1px solid black;">
 
 ---
 
