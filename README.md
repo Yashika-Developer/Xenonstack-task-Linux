@@ -14,7 +14,7 @@ To view the manual page, execute the following command:
 ```bash
 man internsctl
 ```
-<img src="./docs/a.jpg" height="160" width="380" style="border: 1px solid black;">
+<img src="./docs/a.jpg" height="260" width="420" style="border: 1px solid black;">
 <br>
 <img src="./docs/b.jpg" height="160" width="380" style="border: 1px solid black;">
 
