@@ -124,3 +124,119 @@ internsctl file getinfo --owner <file-name>
 ```bash
 internsctl file getinfo --last-modified <file-name>
 ```
+
+```bash
+#!/bin/bash
+
+# internsctl - Custom Linux Command for Intern Operations
+
+# Function to display the manual page
+display_manual() {
+    echo "internsctl(1) - Custom Linux Command for Intern Operations"
+    echo
+    echo "NAME"
+    echo "    internsctl - Manage intern operations"
+    echo
+    echo "SYNOPSIS"
+    echo "    internsctl [OPTIONS] [ARGUMENTS]"
+    echo
+    echo "DESCRIPTION"
+    echo "    internsctl is a custom Linux command for managing intern operations."
+    echo
+    echo "OPTIONS"
+    echo "    --help        Display this help message"
+    echo "    --version     Display the version of internsctl"
+    echo
+    echo "EXAMPLES"
+    echo "    internsctl --help"
+    echo "    internsctl --version"
+    echo "    internsctl cpu getinfo"
+    echo "    internsctl user create <username>"
+    echo "    internsctl user list --sudo-only"
+    echo "    internsctl file getinfo [options] <file-name>"
+    echo
+    echo "AUTHOR"
+    echo "    Your Name <your.email@example.com>"
+}
+
+# Function to display the help message
+display_help() {
+    echo "Usage: internsctl [OPTIONS] [ARGUMENTS]"
+    echo "Manage intern operations."
+    echo
+    echo "OPTIONS:"
+    echo "    --help        Display this help message"
+    echo "    --version     Display the version of internsctl"
+    echo
+    echo "EXAMPLES:"
+    echo "    internsctl --help"
+    echo "    internsctl --version"
+    echo "    internsctl cpu getinfo"
+    echo "    internsctl user create <username>"
+    echo "    internsctl user list --sudo-only"
+    echo "    internsctl file getinfo [options] <file-name>"
+    echo
+    echo "AUTHOR"
+    echo "    Your Name <your.email@example.com>"
+}
+
+# Function to display the version
+display_version() {
+    echo "internsctl v0.1.0"
+}
+
+# Function to get file information
+get_file_info() {
+    if [ -z "$1" ]; then
+        echo "Error: Missing file name"
+        display_help
+        exit 1
+    fi
+
+    echo "Getting information for file: $1"
+    # Add your logic here to get file information
+}
+
+# Main script
+
+# Check for the number of arguments
+if [ "$#" -eq 0 ]; then
+    display_help
+    exit 1
+fi
+
+# Parse command line arguments
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        --help)
+            display_help
+            exit 0
+            ;;
+        --version)
+            display_version
+            exit 0
+            ;;
+        file)
+            shift
+            case "$1" in
+                getinfo)
+                    shift
+                    get_file_info "$1"
+                    exit 0
+                    ;;
+                *)
+                    echo "Error: Unknown subcommand '$1' for 'file'"
+                    display_help
+                    exit 1
+                    ;;
+            esac
+            ;;
+        *)
+            echo "Error: Unknown option '$1'"
+            display_help
+            exit 1
+            ;;
+    esac
+    shift
+done
+```
