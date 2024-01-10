@@ -16,7 +16,7 @@ man internsctl
 ```
 <img src="./docs/a.jpg" height="200" width="850" style="border: 1px solid black;">
 <br>
-<img src="./docs/b.jpg" height="300" width="600" style="border: 1px solid black;">
+<img src="./docs/b.jpg" height="400" width="600" style="border: 1px solid black;">
 
 This will display the full documentation and usage guidelines for the command.
 
