@@ -1,0 +1,130 @@
+#!/bin/bash
+
+# Function to display manual page
+display_manual() {
+    echo "Manual page for internsctl v0.1.0"
+    echo "-----------------------------"
+    echo "DESCRIPTION:"
+    echo "    A custom Linux command for various operations."
+    echo ""
+    echo "USAGE:"
+    echo "    internsctl [OPTIONS] COMMAND [ARGS]"
+    echo ""
+    echo "OPTIONS:"
+    echo "    --help     Show this message"
+    echo "    --version  Show version of the command"
+    echo ""
+    echo "COMMANDS:"
+    echo "    cpu          Get CPU information"
+    echo "    memory       Get memory information"
+    echo "    user         User management"
+    echo "    file         File information"
+}
+
+# Function to display help
+display_help() {
+    echo "Usage: internsctl [OPTIONS] COMMAND [ARGS]"
+    echo ""
+    echo "OPTIONS:"
+    echo "    --help     Show this message"
+    echo "    --version  Show version of the command"
+    echo ""
+    echo "COMMANDS:"
+    echo "    cpu          Get CPU information"
+    echo "    memory       Get memory information"
+    echo "    user         User management"
+    echo "    file         File information"
+    echo ""
+    echo "Example: internsctl cpu getinfo"
+}
+
+# Function to display version
+display_version() {
+    echo "internsctl v0.1.0"
+}
+
+# Function to get CPU information
+get_cpu_info() {
+    lscpu
+}
+
+# Function to get memory information
+get_memory_info() {
+    free
+}
+
+# Function to create a new user
+create_user() {
+    if [ $# -eq 0 ]; then
+        echo "Error: Username not provided."
+        exit 1
+    fi
+    sudo useradd -m "$1"
+    sudo passwd "$1"
+}
+
+# Function to list all users
+list_users() {
+    if [ "$1" == "--sudo-only" ]; then
+        getent group sudo | cut -d: -f4
+    else
+        getent passwd | cut -d: -f1
+    fi
+}
+
+# Function to get file information
+get_file_info() {
+    local file="$1"
+    local size_permissions_owner_lastmod=""
+
+    # Check if file exists
+    if [ ! -e "$file" ]; then
+        echo "Error: File '$file' not found."
+        exit 1
+    fi
+
+    if [ "$2" == "--size" ] || [ "$2" == "-s" ]; then
+        size_permissions_owner_lastmod=$(stat -c "%s" "$file")
+    elif [ "$2" == "--permissions" ] || [ "$2" == "-p" ]; then
+        size_permissions_owner_lastmod=$(stat -c "%A" "$file")
+    elif [ "$2" == "--owner" ] || [ "$2" == "-o" ]; then
+        size_permissions_owner_lastmod=$(stat -c "%U" "$file")
+    elif [ "$2" == "--last-modified" ] || [ "$2" == "-m" ]; then
+        size_permissions_owner_lastmod=$(stat -c "%y" "$file")
+    else
+        size_permissions_owner_lastmod=$(stat -c "File: %n\nAccess: %A\nSize(B): %s\nOwner: %U\nModify: %y" "$file")
+    fi
+
+    echo "$size_permissions_owner_lastmod"
+}
+
+# Main script
+case "$1" in
+    "cpu")
+        get_cpu_info
+        ;;
+    "memory")
+        get_memory_info
+        ;;
+    "user")
+        if [ "$2" == "create" ]; then
+            create_user "$3"
+        elif [ "$2" == "list" ]; then
+            list_users "$3"
+        fi
+        ;;
+    "file")
+        shift
+        get_file_info "$@"
+        ;;
+    "--help")
+        display_help
+        ;;
+    "--version")
+        display_version
+        ;;
+    *)
+        display_manual
+        ;;
+esac
+
